@@ -5,26 +5,38 @@ import Card from '../Card';
 
 class Cards extends React.Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      cards: this.props.cards
-    };
-  }
+  state = {
+    cards: this.props.cards
+  };
+
+  deleteCard = (e) => {
+    const targetId = e.target.dataset.id;
+    console.log (`delete card with id ${targetId}`);
+
+    const copyCards = [...this.state.cards];
+    const newCards = copyCards.filter (card => card.id != targetId);
+    console.log (newCards);
+
+    this.setState ({
+      cards: newCards
+    });
+  };
 
   render() {
     const { cards } = this.state;
 
     return (
       <React.Fragment>
-        {cards && cards.map (
-          card => <Card 
-                    key={card.id}
-                    name={card.name}
-                    description={card.description}
-                    image={card.image}
-                  />
-        )}
+        {cards && cards.map (card => (
+          <Card 
+            key={card.id}
+            id={card.id}
+            name={card.name}
+            description={card.description}
+            image={card.image}
+            deleteCard={this.deleteCard}
+          />
+          ))}
       </React.Fragment>
     );
   }
