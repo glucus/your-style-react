@@ -14,7 +14,7 @@ class Cards extends React.Component {
     console.log (`delete card with id ${targetId}`);
 
     const copyCards = [...this.state.cards];
-    const newCards = copyCards.filter (card => card.id != targetId);
+    const newCards = copyCards.filter (card => card.id.toString() !== targetId.toString());
     console.log (newCards);
 
     this.setState ({
