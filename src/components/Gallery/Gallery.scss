@@ -2,5 +2,6 @@
   // border: 1px solid grey;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: flex-start; //space-around;
+  padding-left: 30px;
 }
