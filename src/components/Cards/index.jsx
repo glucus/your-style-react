@@ -10,16 +10,11 @@ const Cards = (props) => {
 
     return (
       <React.Fragment>
-        {cards && cards.map (card => (
-          <Card 
-            key={card.id}
-            id={card.id}
-            name={card.name}
-            description={card.description}
-            image={card.image}
-            deleteCard={deleteCard}
-          />
-          ))}
+        {cards && cards.map(
+          card => <Card key={card.id}
+                        card={card}
+                        deleteCard={deleteCard} />
+        )}
       </React.Fragment>
     );
 };
