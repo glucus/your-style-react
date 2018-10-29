@@ -15,43 +15,42 @@ class Gallery extends React.Component {
   filterByCategory = (item, category) => item.category === category;
 
   filterItems = (category) => {
-    const filteredItems = [...this.props.galleryItems].filter(
+
+    const { galleryItems } = this.props;
+
+    const filteredItems = galleryItems.filter(
       item => this.filterByCategory(item, category)
     );
     return filteredItems;
   }
 
-  categoryClick = (e) => {
-    const categoryName = e.target.dataset.name;
-    const categoryDescription = e.target.dataset.description;
+  categoryClick = (name, description, e) => {
 
     this.setState({
-      categoryName: categoryName,
-      categoryDescription: categoryDescription,
-      filteredItems: this.filterItems(categoryName)
+      categoryName: name,
+      categoryDescription: description,
+      filteredItems: this.filterItems(name)
     });
   }
 
   deleteItem = (id, name, e) => {
-    const targetId = id; // e.target.dataset.id;
-    const targetName = name; 
 
-    const answer = window.confirm (`Are you sure you want to delete ${targetName}?`);
+    const { filteredItems } = this.state;
+    const answer = window.confirm (`Are you sure you want to delete ${name}?`);
 
-    const afterDeletion = [...this.state.filteredItems].filter(
-      card => card.id.toString() !== targetId.toString()
+    const remainingItems = filteredItems.filter(
+      card => card.id.toString() !== id.toString()
     );
 
     if (answer) {
       this.setState ({
-        filteredItems: afterDeletion
+        filteredItems: remainingItems
       });
     }
   };
 
   render () {
     const { categoryDescription, filteredItems } = this.state;
-    // console.log (filteredItems);
 
     return (
       <React.Fragment>

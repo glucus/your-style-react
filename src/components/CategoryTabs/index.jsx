@@ -10,7 +10,7 @@ const CategoryTabs = (props) => {
         category => <button key={category.id}
                             data-name={category.name}
                             data-description={category.description}
-                            onClick = {handleClick}>
+                            onClick = {handleClick.bind (this, category.name, category.description) }>
                         {category.description}
                     </button>
       )}
