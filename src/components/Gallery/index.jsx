@@ -55,10 +55,12 @@ class Gallery extends React.Component {
 
     return (
       <React.Fragment>
-        <CategoryTabs categories={this.props.categories}
-                      categoryName={categoryName}
-                      handleClick={this.categoryClick} />
-        <h1>{categoryDescription}</h1>
+        <div className="tabsAndHeading">
+          <CategoryTabs categories={this.props.categories}
+                        categoryName={categoryName}
+                        handleClick={this.categoryClick} />
+          <h2>{categoryDescription}</h2>
+        </div>
         <div className="gallery">
             <Cards cards={filteredItems}
                   deleteCard={this.deleteItem}

@@ -10,7 +10,7 @@ $card-width: 300px;
   align-items: center;
   position: relative;
 
-  padding: 10px 4px 20px;
+  padding: 10px 8px 20px;
   border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 4px;
   
@@ -20,8 +20,7 @@ $card-width: 300px;
 
 .thumbnail {
   height: 300px;
-  // border-radius: 4px;
-  // width: 100%;
+  max-width: 100%;
 }
 
 .fa-edit {
