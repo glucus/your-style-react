@@ -11,7 +11,6 @@ class Gallery extends React.Component {
     return (
       <Consumer>
         {value => {
-
           const { filteredClothes, categories, categoryName, categoryDescription } = value;
 
           return (
@@ -27,7 +26,6 @@ class Gallery extends React.Component {
               </div>
             </React.Fragment>
           );
-
         }
       }
       </Consumer>

@@ -48,26 +48,6 @@ const reducer = (state, action) => {
        };
     } 
 
-    // case 'FILTER_CLOTHES': {
-
-    //   const { categoryName } = state;
-      
-    //   const filterClothes = (categoryName) => {
-    //     if (categoryName) {
-    //       return clothes.filter(
-    //         item => item.category === categoryName
-    //       );
-    //     } return clothes;
-    //   };
-
-    //   const filteredClothes = filterClothes(categoryName);
-
-    //   return {
-    //     ...state,
-    //     filteredClothes: filteredClothes
-    //   };
-    // }
-
     default: 
         return state;
     }
