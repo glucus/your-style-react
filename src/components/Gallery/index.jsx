@@ -9,40 +9,44 @@ class Gallery extends React.Component {
   state = {
     categories: this.props.categories,
     galleryItems: this.props.galleryItems,
-    categoryName: "tops"
+    categoryName: '',
+    categoryDescription: '',
+    filteredItems: this.props.galleryItems
   };
 
-  selectCategory = () => {
-    const selectedCategory = [...this.state.categories].filter(
-      category => category.name === this.state.categoryName
-    );
-    return selectedCategory;
-  }
+  filterByCategory = (item, category) => item.category === category;
 
-  filterByCategory = (item, targetCategory) => item.category === targetCategory;
-
-  filterItems = (selectedCategory) => {
+  filterItems = (category) => {
     const filteredItems = [...this.state.galleryItems].filter(
-      item => this.filterByCategory(item, selectedCategory)
+      item => this.filterByCategory(item, category)
     );
     return filteredItems;
   }
 
-  render () {
-    const { categoryName } = this.state;
+  categoryClick = (e) => {
 
-    const selectedCategory = this.selectCategory();
-    const categoryDescription = selectedCategory && selectedCategory[0] && 
-          selectedCategory[0].description;
-    const selectedItems = this.filterItems(categoryName);
+    const categoryName = e.target.dataset.name;
+    const categoryDescription = e.target.dataset.description;
+
+    this.setState({
+      categoryName: categoryName,
+      categoryDescription: categoryDescription,
+      filteredItems: this.filterItems(categoryName)
+    });
+  }
+
+  render () {
+    const { categoryName, categoryDescription, filteredItems } = this.state;
+
+    console.log (filteredItems);
 
     return (
       <React.Fragment>
         <CategoryTabs categories={this.props.categories} 
-                      handleClick={e => console.log(e.target)} />
+                      handleClick={this.categoryClick} />
       <h1>{categoryDescription}</h1>
       <div className="gallery">
-          {selectedItems && <Cards cards={selectedItems} />}
+          <Cards cards={filteredItems} />
       </div>
     </React.Fragment>
     );
