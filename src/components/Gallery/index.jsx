@@ -2,26 +2,51 @@ import React from 'react';
 import './Gallery.scss';
 
 import Cards from '../Cards';
+import CategoryTabs from '../CategoryTabs';
 
-const Gallery = (props) => {
+class Gallery extends React.Component {
 
-  const { galleryItems, categories } = props;
+  state = {
+    categories: this.props.categories,
+    galleryItems: this.props.galleryItems,
+    categoryName: "tops"
+  };
 
+  selectCategory = () => {
+    const selectedCategory = [...this.state.categories].filter(
+      category => category.name === this.state.categoryName
+    );
+    return selectedCategory;
+  }
 
-  const filterByCategory = (item, targetCategory) => item.category === targetCategory;
+  filterByCategory = (item, targetCategory) => item.category === targetCategory;
 
-  const initialData = [...galleryItems];
-  const filteredItems = initialData.filter(item => filterByCategory(item, "pants"));
-  const filteredCategory = [...categories].filter(category => category.name === "pants");
+  filterItems = (selectedCategory) => {
+    const filteredItems = [...this.state.galleryItems].filter(
+      item => this.filterByCategory(item, selectedCategory)
+    );
+    return filteredItems;
+  }
 
-  return (
-    <React.Fragment>
-      <h1>{filteredCategory && filteredCategory[0] && filteredCategory[0].description}</h1>
+  render () {
+    const { categoryName } = this.state;
+
+    const selectedCategory = this.selectCategory();
+    const categoryDescription = selectedCategory && selectedCategory[0] && 
+          selectedCategory[0].description;
+    const selectedItems = this.filterItems(categoryName);
+
+    return (
+      <React.Fragment>
+        <CategoryTabs categories={this.props.categories} 
+                      handleClick={e => console.log(e.target)} />
+      <h1>{categoryDescription}</h1>
       <div className="gallery">
-          {filteredItems && <Cards cards={filteredItems} />}
+          {selectedItems && <Cards cards={selectedItems} />}
       </div>
     </React.Fragment>
-  );
-};
+    );
+  }
+}
 
 export default Gallery;

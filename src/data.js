@@ -4,6 +4,7 @@ import image2 from './images/2.jpg';
 import image3 from './images/3.jpg';
 import image4 from './images/4.jpg';
 import image5 from './images/5.jpg';
+import image6 from './images/6.jpg';
 
 export const clothes = [
   {
@@ -53,6 +54,14 @@ export const clothes = [
     description: "wide black pants with geometric print",
     category: "pants",
     target: "womenswear"
+  },
+  {
+    id: 6,
+    name: "blue shirt",
+    image: image6,
+    description: "casual light blue shirt",
+    category: "tops",
+    target: "menswear"
   }
 ];
 
