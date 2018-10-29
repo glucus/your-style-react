@@ -10,18 +10,14 @@ class Card extends React.Component {
     const { card, deleteCard } = this.props;
 
     return (
-      <React.Fragment>
-        <div className="card">
-        <div className="edit">
+      <div className="card">
           <i className="far fa-edit"
-             onClick={deleteCard.bind (this, card.id, card.name)} 
+              onClick={deleteCard.bind (this, card.id, card.name)} 
           />
-        </div>
           <img className="thumbnail" src={card.image} alt="" />
           <h4>{card.name}</h4>
           <div>{card.description}</div>
-        </div>
-      </React.Fragment>
+      </div>
     );
   }
 } 

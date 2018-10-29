@@ -24,17 +24,15 @@ $card-width: 300px;
   // width: 100%;
 }
 
-.edit {
+.fa-edit {
   position: absolute;
-  right: 0;
-  bottom: 4px;
+  right: 4px;
+  bottom: 8px;
+
   display: flex;
   align-self: flex-end;
-  padding: 4px;
+  // padding: 4px;
   cursor: pointer;
-}
-
-.fa-edit {
   color: rgba(0, 0, 0, 0.4);
 }
 
