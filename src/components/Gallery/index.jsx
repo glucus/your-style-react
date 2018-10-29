@@ -7,17 +7,15 @@ import CategoryTabs from '../CategoryTabs';
 class Gallery extends React.Component {
 
   state = {
-    categories: this.props.categories,
-    galleryItems: this.props.galleryItems,
     categoryName: '',
-    categoryDescription: '',
+    categoryDescription: 'All items',
     filteredItems: this.props.galleryItems
   };
 
   filterByCategory = (item, category) => item.category === category;
 
   filterItems = (category) => {
-    const filteredItems = [...this.state.galleryItems].filter(
+    const filteredItems = [...this.props.galleryItems].filter(
       item => this.filterByCategory(item, category)
     );
     return filteredItems;
@@ -36,7 +34,7 @@ class Gallery extends React.Component {
   }
 
   render () {
-    const { categoryName, categoryDescription, filteredItems } = this.state;
+    const { categoryDescription, filteredItems } = this.state;
 
     console.log (filteredItems);
 
