@@ -1,6 +1,7 @@
 import React from 'react';
 import './Gallery.scss';
 
+import { Consumer } from '../../context';
 import Cards from '../Cards';
 import CategoryTabs from '../CategoryTabs';
 
@@ -9,15 +10,13 @@ class Gallery extends React.Component {
   state = {
     categoryName: '',
     categoryDescription: 'All items',
-    filteredItems: this.props.galleryItems
+    filteredItems: []
   };
 
   filterByCategory = (item, category) => item.category === category;
 
   filterItems = (category) => {
-
     const { galleryItems } = this.props;
-
     const filteredItems = galleryItems.filter(
       item => this.filterByCategory(item, category)
     );
@@ -34,40 +33,32 @@ class Gallery extends React.Component {
     });
   }
 
-  deleteItem = (id, name, e) => {
-
-    const { filteredItems } = this.state;
-    const answer = window.confirm (`Are you sure you want to delete ${name}?`);
-
-    const remainingItems = filteredItems.filter(
-      card => card.id.toString() !== id.toString()
-    );
-
-    if (answer) {
-      this.setState ({
-        filteredItems: remainingItems
-      });
-    }
-  };
-
   render () {
-    const { categoryDescription, filteredItems, categoryName } = this.state;
-
     return (
-      <React.Fragment>
-        <div className="tabsAndHeading">
-          <CategoryTabs categories={this.props.categories}
-                        categoryName={categoryName}
-                        handleClick={this.categoryClick} />
-          <h2>{categoryDescription}</h2>
-        </div>
-        <div className="gallery">
-            <Cards cards={filteredItems}
-                  deleteCard={this.deleteItem}
-            />
-        </div>
-    </React.Fragment>
-    );
+      <Consumer>
+        {value => {
+
+          const { clothes, categories } = value;
+          const { categoryName, categoryDescription } = this.state; 
+
+          return (
+            <React.Fragment>
+              <div className="tabsAndHeading">
+                <CategoryTabs categories={categories}
+                              categoryName={categoryName}
+                              handleClick={this.categoryClick} />
+                <h2>{categoryDescription}</h2>
+              </div>
+              <div className="gallery">
+                  <Cards cards={clothes} />
+              </div>
+            </React.Fragment>
+          );
+
+        }
+      }
+      </Consumer>
+    )
   }
 }
 

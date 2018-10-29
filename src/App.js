@@ -1,17 +1,18 @@
 import React, { Component } from 'react';
 import Gallery from '../src/components/Gallery';
-import { clothes, categories } from './data';
+
+import { Provider } from './context';
 
 import './App.css';
 
 class App extends Component {
   render() {
     return (
-      <div className="container">
-          <Gallery
-            galleryItems={clothes}
-            categories={categories} />
-      </div>
+      <Provider>
+        <div className="container">
+            <Gallery />
+        </div>
+      </Provider>
     );
   }
 }

@@ -13,7 +13,7 @@ const Cards = (props) => {
         {cards && cards.map(
           card => <Card key={card.id}
                         card={card}
-                        deleteCard={deleteCard} />
+                  />
         )}
       </React.Fragment>
     );
