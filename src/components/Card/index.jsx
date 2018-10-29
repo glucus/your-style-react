@@ -10,7 +10,7 @@ const Card = props => {
     <React.Fragment>
       <div className="card">
       <div className="edit">
-        <i className="far fa-edit" data-id={id} onClick={deleteCard} />
+        <i className="far fa-edit" data-id={id} data-name={name} onClick={deleteCard} />
       </div>
         <img className="thumbnail" src={image} alt="" />
         <h4>{name}</h4>

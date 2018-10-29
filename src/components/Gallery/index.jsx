@@ -22,7 +22,6 @@ class Gallery extends React.Component {
   }
 
   categoryClick = (e) => {
-
     const categoryName = e.target.dataset.name;
     const categoryDescription = e.target.dataset.description;
 
@@ -33,18 +32,21 @@ class Gallery extends React.Component {
     });
   }
 
-
-  deleteCard = (e) => {
+  deleteItem = (e) => {
     const targetId = e.target.dataset.id;
-    console.log (`delete card with id ${targetId}`);
+    const targetName = e.target.dataset.name;
+
+    const answer = window.confirm (`Are you sure you want to delete ${targetName}?`);
 
     const afterDeletion = [...this.state.filteredItems].filter(
       card => card.id.toString() !== targetId.toString()
     );
 
-    this.setState ({
-      filteredItems: afterDeletion
-    });
+    if (answer) {
+      this.setState ({
+        filteredItems: afterDeletion
+      });
+    }
   };
 
   render () {
@@ -58,7 +60,7 @@ class Gallery extends React.Component {
       <h1>{categoryDescription}</h1>
       <div className="gallery">
           <Cards cards={filteredItems}
-                 deleteCard={this.deleteCard}
+                 deleteCard={this.deleteItem}
            />
       </div>
     </React.Fragment>
