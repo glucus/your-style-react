@@ -30,8 +30,8 @@ class Card extends React.Component {
 } 
 
 Card.propTypes = {
-  id: PropTypes.number,
-  card: PropTypes.object
+  card: PropTypes.object.isRequired,
+  deleteCard: PropTypes.func.isRequired
 };
 
 export default Card;
