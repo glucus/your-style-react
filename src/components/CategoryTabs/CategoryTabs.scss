@@ -1,0 +1,29 @@
+
+.categoryTabs {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+
+  border: none;
+  outline: none;
+  cursor: pointer;
+
+  padding: 0.5em 1.5em;
+  margin-right: 1em;
+}
+
+.unselected {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.selected {
+  background-color: #0089b3;
+  color: #ffffff;
+}

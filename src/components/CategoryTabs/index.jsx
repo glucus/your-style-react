@@ -1,20 +1,23 @@
 import React from 'react';
+import './CategoryTabs.scss';
 
 const CategoryTabs = (props) => {
 
-  const { categories, handleClick } = props;
+  const { categories, handleClick, categoryName } = props;
+
+  const isSelected = category => category.name === categoryName;
 
   return (
-    <React.Fragment>
+    <div className="categoryTabs">
       {categories && categories.map (
         category => <button key={category.id}
-                            data-name={category.name}
-                            data-description={category.description}
-                            onClick = {handleClick.bind (this, category.name, category.description) }>
+                            onClick = {handleClick.bind (this, category.name, category.description) }
+                            className={isSelected(category) ? "selected" : "unselected" }
+                    >
                         {category.description}
                     </button>
       )}
-      </React.Fragment>
+      </div>
   );
 };
 

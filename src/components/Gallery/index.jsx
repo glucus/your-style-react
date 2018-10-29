@@ -21,15 +21,16 @@ class Gallery extends React.Component {
     const filteredItems = galleryItems.filter(
       item => this.filterByCategory(item, category)
     );
-    return filteredItems;
+    this.setState ({
+      filteredItems: filteredItems
+    })
   }
 
   categoryClick = (name, description, e) => {
-
+    this.filterItems(name);
     this.setState({
       categoryName: name,
-      categoryDescription: description,
-      filteredItems: this.filterItems(name)
+      categoryDescription: description
     });
   }
 
@@ -50,11 +51,12 @@ class Gallery extends React.Component {
   };
 
   render () {
-    const { categoryDescription, filteredItems } = this.state;
+    const { categoryDescription, filteredItems, categoryName } = this.state;
 
     return (
       <React.Fragment>
-        <CategoryTabs categories={this.props.categories} 
+        <CategoryTabs categories={this.props.categories}
+                      categoryName={categoryName}
                       handleClick={this.categoryClick} />
         <h1>{categoryDescription}</h1>
         <div className="gallery">
