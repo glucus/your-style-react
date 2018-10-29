@@ -8,22 +8,24 @@ const Context = React.createContext();
 const reducer = (state, action) => {
   switch (action.type) {
 
-    case 'DELETE_ITEM': 
-        const { clothes } = state;
+    case 'DELETE_ITEM': {
+      const { filteredClothes } = state;
 
-        const filteredClothes = clothes.filter(
-          item => item.id.toString() !== action.payload.id.toString()
-        );
+      const clothesAfterDeletion = filteredClothes.filter(
+        item => item.id.toString() !== action.payload.id.toString()
+      );
 
-        const answer = window.confirm (`Are you sure you want to delete ${action.payload.name}?`);
-        if (answer) { 
-          return { ...state, clothes: filteredClothes };
-        } return state;
-      
+      const answer = window.confirm (`Are you sure you want to delete ${action.payload.name}?`);
+      if (answer) { 
+        return {
+           ...state,
+            filteredClothes: clothesAfterDeletion
+        };
+      } return state;
+    }
+        
 
     case 'SELECT_CATEGORY': {
-
-      const { clothes } = state;
 
       const categoryName = action.payload.categoryName;
       const categoryDescription = action.payload.categoryDescription;
@@ -37,7 +39,6 @@ const reducer = (state, action) => {
       };
 
       const filteredClothes = filterClothes(categoryName);
-      // console.log (filteredClothes);
 
       return {
         ...state, 
@@ -46,6 +47,26 @@ const reducer = (state, action) => {
         filteredClothes: filteredClothes
        };
     } 
+
+    // case 'FILTER_CLOTHES': {
+
+    //   const { categoryName } = state;
+      
+    //   const filterClothes = (categoryName) => {
+    //     if (categoryName) {
+    //       return clothes.filter(
+    //         item => item.category === categoryName
+    //       );
+    //     } return clothes;
+    //   };
+
+    //   const filteredClothes = filterClothes(categoryName);
+
+    //   return {
+    //     ...state,
+    //     filteredClothes: filteredClothes
+    //   };
+    // }
 
     default: 
         return state;
