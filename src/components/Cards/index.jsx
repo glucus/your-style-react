@@ -6,6 +6,7 @@ import Card from '../Card';
 const Cards = (props) => {
 
     const { cards, deleteCard } = props;
+    // console.log ('render Cards');
 
     return (
       <React.Fragment>

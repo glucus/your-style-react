@@ -5,6 +5,11 @@ import image3 from './images/3.jpg';
 import image4 from './images/4.jpg';
 import image5 from './images/5.jpg';
 import image6 from './images/6.jpg';
+import image7 from './images/7.jpg';
+import image8 from './images/8.jpg';
+import image9 from './images/9.jpg';
+import image10 from './images/10.jpg';
+
 
 export const clothes = [
   {
@@ -62,6 +67,38 @@ export const clothes = [
     description: "casual light blue shirt",
     category: "tops",
     target: "menswear"
+  },
+  {
+    id: 7,
+    name: "navy t-shirt",
+    image: image7,
+    description: "navy blue t-shirt",
+    category: "tops",
+    target: "menswear"
+  },
+  {
+    id: 8,
+    name: "white t-shirt",
+    image: image8,
+    description: "white t-shirt with a print",
+    category: "tops",
+    target: "menswear"
+  },
+  {
+    id: 9,
+    name: "beige sweater",
+    image: image9,
+    description: "beige cashmere sweater",
+    category: "tops",
+    target: "womenswear"
+  },
+  {
+    id: 10,
+    name: "white top",
+    image: image10,
+    description: "basic white top with thin straps",
+    category: "tops",
+    target: "womenswear"
   }
 ];
 
