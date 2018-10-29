@@ -10,6 +10,23 @@ import image8 from './images/8.jpg';
 import image9 from './images/9.jpg';
 import image10 from './images/10.jpg';
 
+export const categories = [
+  {
+    id: 0,
+    name: '',
+    description: "All items"
+   },
+  {
+    id: 1,
+    name: "pants",
+    description: "Jeans and pants"
+   },
+   {
+    id: 2,
+    name: "tops",
+    description: "Tops & shirts"
+   }
+];
 
 export const clothes = [
   {
@@ -100,17 +117,4 @@ export const clothes = [
     category: "tops",
     target: "womenswear"
   }
-];
-
-export const categories = [
-  {
-    id: 0,
-    name: "pants",
-    description: "Jeans and pants"
-   },
-   {
-    id: 1,
-    name: "tops",
-    description: "Tops & shirts"
-   }
 ];

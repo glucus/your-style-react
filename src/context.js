@@ -3,8 +3,9 @@ import { clothes, categories } from './data';
 
 const Context = React.createContext();
 
-const reducer = (state, action) => {
+// const filterByParameter = (item, parameter, targetValue) => item[parameter] === targetValue;
 
+const reducer = (state, action) => {
   switch (action.type) {
 
     case 'DELETE_ITEM': 
@@ -18,10 +19,36 @@ const reducer = (state, action) => {
         if (answer) { 
           return { ...state, clothes: filteredClothes };
         } return state;
+      
+
+    case 'SELECT_CATEGORY': {
+
+      const { clothes } = state;
+
+      const categoryName = action.payload.categoryName;
+      const categoryDescription = action.payload.categoryDescription;
+
+      const filterClothes = (categoryName) => {
+        if (categoryName) {
+          return clothes.filter(
+            item => item.category === categoryName
+          );
+        } return clothes;
+      };
+
+      const filteredClothes = filterClothes(categoryName);
+      // console.log (filteredClothes);
+
+      return {
+        ...state, 
+        categoryName: categoryName,
+        categoryDescription: categoryDescription,
+        filteredClothes: filteredClothes
+       };
+    } 
 
     default: 
         return state;
-
     }
 }
 
@@ -29,7 +56,10 @@ export class Provider extends React.Component {
     // global state
   state = {
     clothes: clothes,
+    filteredClothes: clothes,
     categories: categories,
+    categoryName: '',
+    categoryDescription: 'All items',
     dispatch: action => this.setState (state => reducer (state, action))
   }
 

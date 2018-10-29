@@ -5,15 +5,12 @@ import Card from '../Card';
 
 const Cards = (props) => {
 
-    const { cards, deleteCard } = props;
-    // console.log ('render Cards');
+    const { cards } = props;
 
     return (
       <React.Fragment>
         {cards && cards.map(
-          card => <Card key={card.id}
-                        card={card}
-                  />
+          card => <Card key={card.id} card={card} />
         )}
       </React.Fragment>
     );

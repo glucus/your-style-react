@@ -9,12 +9,8 @@ class Card extends React.Component {
 
     dispatch ({
       type: 'DELETE_ITEM',
-      payload: {
-        id: id,
-        name: name
-      }
+      payload: { id: id, name: name }
     })
-    
   }
 
   render () {
