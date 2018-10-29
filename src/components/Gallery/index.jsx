@@ -32,9 +32,9 @@ class Gallery extends React.Component {
     });
   }
 
-  deleteItem = (e) => {
-    const targetId = e.target.dataset.id;
-    const targetName = e.target.dataset.name;
+  deleteItem = (id, name, e) => {
+    const targetId = id; // e.target.dataset.id;
+    const targetName = name; 
 
     const answer = window.confirm (`Are you sure you want to delete ${targetName}?`);
 
@@ -57,12 +57,12 @@ class Gallery extends React.Component {
       <React.Fragment>
         <CategoryTabs categories={this.props.categories} 
                       handleClick={this.categoryClick} />
-      <h1>{categoryDescription}</h1>
-      <div className="gallery">
-          <Cards cards={filteredItems}
-                 deleteCard={this.deleteItem}
-           />
-      </div>
+        <h1>{categoryDescription}</h1>
+        <div className="gallery">
+            <Cards cards={filteredItems}
+                  deleteCard={this.deleteItem}
+            />
+        </div>
     </React.Fragment>
     );
   }

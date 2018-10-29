@@ -13,11 +13,8 @@ class Card extends React.Component {
       <React.Fragment>
         <div className="card">
         <div className="edit">
-          <i
-            className="far fa-edit"
-            data-id={card.id}
-            data-name={card.name}
-            onClick={deleteCard} 
+          <i className="far fa-edit"
+             onClick={deleteCard.bind (this, card.id, card.name)} 
           />
         </div>
           <img className="thumbnail" src={card.image} alt="" />
