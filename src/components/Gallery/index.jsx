@@ -33,10 +33,23 @@ class Gallery extends React.Component {
     });
   }
 
+
+  deleteCard = (e) => {
+    const targetId = e.target.dataset.id;
+    console.log (`delete card with id ${targetId}`);
+
+    const afterDeletion = [...this.state.filteredItems].filter(
+      card => card.id.toString() !== targetId.toString()
+    );
+
+    this.setState ({
+      filteredItems: afterDeletion
+    });
+  };
+
   render () {
     const { categoryDescription, filteredItems } = this.state;
-
-    console.log (filteredItems);
+    // console.log (filteredItems);
 
     return (
       <React.Fragment>
@@ -44,7 +57,9 @@ class Gallery extends React.Component {
                       handleClick={this.categoryClick} />
       <h1>{categoryDescription}</h1>
       <div className="gallery">
-          <Cards cards={filteredItems} />
+          <Cards cards={filteredItems}
+                 deleteCard={this.deleteCard}
+           />
       </div>
     </React.Fragment>
     );

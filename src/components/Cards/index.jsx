@@ -3,27 +3,9 @@ import PropTypes from 'prop-types';
 
 import Card from '../Card';
 
-class Cards extends React.Component {
+const Cards = (props) => {
 
-  state = {
-    cards: this.props.cards
-  };
-
-  deleteCard = (e) => {
-    const targetId = e.target.dataset.id;
-    console.log (`delete card with id ${targetId}`);
-
-    const copyCards = [...this.state.cards];
-    const newCards = copyCards.filter (card => card.id.toString() !== targetId.toString());
-    console.log (newCards);
-
-    this.setState ({
-      cards: newCards
-    });
-  };
-
-  render() {
-    const { cards } = this.state;
+    const { cards, deleteCard } = props;
 
     return (
       <React.Fragment>
@@ -34,23 +16,16 @@ class Cards extends React.Component {
             name={card.name}
             description={card.description}
             image={card.image}
-            deleteCard={this.deleteCard}
+            deleteCard={deleteCard}
           />
           ))}
       </React.Fragment>
     );
-  }
-}
-
-// Cards.defaultProps = {
-//   cards: []
-// };
+};
 
 Cards.propTypes = {
   cards: PropTypes.array.isRequired
 };
-
-
 
 
 export default Cards;
