@@ -29,9 +29,10 @@ class Form extends React.Component {
 
   render () {
 
-    // const { name, description } = this.state;
-
     const fieldsArr = ['name', 'description'];
+
+    const updatedName = this.state.name || this.props.name;
+    const updatedDescription = this.state.description || this.props.description;
 
     return (
       <form>
@@ -48,7 +49,7 @@ class Form extends React.Component {
         )}
         <div className="icons-bottom">
           <i className="fas fa-check" onClick={
-            this.props.handleSubmit.bind(this, this.state.name, this.state.description)
+            this.props.handleSubmit.bind(this, updatedName, updatedDescription)
           } />
         </div>
       </form>
