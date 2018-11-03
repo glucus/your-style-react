@@ -27,7 +27,7 @@ i {
   margin-right: 5px;
   cursor: pointer;
   color: rgba(0, 0, 0, 0.4);
-  
+
   &:hover, &:focus {
     color: #0089b3;
   }
@@ -40,14 +40,15 @@ i {
 }
 
 
-// .fa-edit {
-//   position: absolute;
-//   right: 10px;
-//   bottom: 8px;
-// }
+.fa-check {
+  &:hover, &:focus {
+    color: green;
+  }
+  padding-right: 10px;
+}
 
-// .fa-trash-alt {
-//   position: absolute;
-//   right: 4px;
-//   bottom: 8px;
-// }
+.fa-trash-alt {
+  &:hover, &:focus {
+    color: red;
+  }
+}

@@ -4,7 +4,6 @@ import './Gallery.scss';
 import { Consumer } from '../../context';
 import Cards from '../Cards';
 import CategoryTabs from '../CategoryTabs';
-import Form from '../Form';
 
 class Gallery extends React.Component {
 
@@ -21,7 +20,6 @@ class Gallery extends React.Component {
                               categoryName={categoryName}
                 />
                 <h2>{categoryDescription}</h2>
-                <Form />
               </div>
               <div className="gallery">
                   <Cards cards={filteredClothes} />

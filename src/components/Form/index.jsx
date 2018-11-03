@@ -35,10 +35,8 @@ class Form extends React.Component {
       <form>
         {fieldsArr.map (
           item => <div className="form-row" key={item}>
-                    <label>
-                      <span className="form-label">{item}</span>
-                      <input type='text' name={item} value={this.state[item]} onChange={this.handleChange} />
-                     </label>
+                    <label className="form-label">{item}</label>
+                    <input type='text' name={item} value={this.state[item]} onChange={this.handleChange} />
                   </div>
         )}
       </form>
