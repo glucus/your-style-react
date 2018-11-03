@@ -7,7 +7,9 @@ import Form from '../Form';
 class Card extends React.Component {
 
   state={
-    formHidden: true
+    formHidden: true,
+    name: this.props.card.name,
+    description: this.props.card.description
   }
 
   onClickDelete = (id, name, dispatch) => {
@@ -23,6 +25,15 @@ class Card extends React.Component {
     })
   }
 
+  handleSubmit = (name, description, e) => {
+    
+    this.setState ({
+      name: name,
+      description: description,
+      formHidden: !this.state.formHidden
+    })
+  };
+
   render () {
     return (
       <Consumer>
@@ -31,7 +42,7 @@ class Card extends React.Component {
 
             const { card } = this.props;
             const { dispatch } = value;
-            const { formHidden } = this.state;
+            const { formHidden, name, description } = this.state;
 
             return (
               <div className="card">
@@ -39,22 +50,18 @@ class Card extends React.Component {
                   {
                     formHidden ? 
                     <React.Fragment>
-                      <h4>{card.name}</h4>
-                      <div>{card.description}</div>
+                      <h4>{name}</h4>
+                      <div>{description}</div>
                     </React.Fragment>
                     :
-                    <Form />
+                    <Form name={name} description={description} handleSubmit={this.handleSubmit} />
                   }
-                  <div className="icons-bottom">
-                    {
-                      formHidden ? 
-                        <i className="far fa-edit" onClick={this.toggleForm} /> :
-                        <i className="fas fa-check" onClick={this.toggleForm} />
-                    }
-                    {formHidden && <i className="far fa-trash-alt" 
+                  {formHidden && <div className="icons-bottom">
+                    <i className="far fa-edit" onClick={this.toggleForm} />
+                    <i className="far fa-trash-alt" 
                         onClick={this.onClickDelete.bind (this, card.id, card.name, dispatch)}
-                      />}
-                  </div>
+                    />
+                  </div>}
               </div>
             );
           }

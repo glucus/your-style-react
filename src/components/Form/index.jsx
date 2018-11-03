@@ -1,5 +1,6 @@
 import React from 'react';
 import './Form.scss';
+import { throws } from 'assert';
 
 class Form extends React.Component {
 
@@ -25,6 +26,7 @@ class Form extends React.Component {
     })
   };
 
+
   render () {
 
     // const { name, description } = this.state;
@@ -36,9 +38,19 @@ class Form extends React.Component {
         {fieldsArr.map (
           item => <div className="form-row" key={item}>
                     <label className="form-label">{item}</label>
-                    <input type='text' name={item} value={this.state[item]} onChange={this.handleChange} />
+                    <input type='text'
+                           name={item}
+                           value={this.state[item]}
+                           onChange={this.handleChange}
+                           placeholder={this.props[item]}
+                    />
                   </div>
         )}
+        <div className="icons-bottom">
+          <i className="fas fa-check" onClick={
+            this.props.handleSubmit.bind(this, this.state.name, this.state.description)
+          } />
+        </div>
       </form>
     );
   }

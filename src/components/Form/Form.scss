@@ -24,3 +24,19 @@ input {
   padding: 0.5em;
   font-size: 14px;
 }
+
+.icons-bottom {
+  display: flex;
+  align-self: flex-end;
+}
+
+i {
+  cursor: pointer;
+  color: rgba(0, 0, 0, 0.4);
+}
+
+.fa-check {
+  &:hover, &:focus {
+    color: green;
+  }
+}
