@@ -24,7 +24,6 @@ const reducer = (state, action) => {
       } return state;
     }
         
-
     case 'SELECT_CATEGORY': {
 
       const categoryName = action.payload.categoryName;

@@ -6,7 +6,6 @@ import { Consumer } from '../../context';
 class Card extends React.Component {
 
   onClickDelete = (id, name, dispatch) => {
-
     dispatch ({
       type: 'DELETE_ITEM',
       payload: { id: id, name: name }
@@ -24,12 +23,16 @@ class Card extends React.Component {
 
             return (
               <div className="card">
-                  <i className="far fa-edit"
-                      onClick={ this.onClickDelete.bind (this, card.id, card.name, dispatch) }
-                  />
+                  
                   <img className="thumbnail" src={card.image} alt="" />
                   <h4>{card.name}</h4>
                   <div>{card.description}</div>
+                  <div className="icons-bottom">
+                    <i className="far fa-edit" />
+                    <i className="far fa-trash-alt" 
+                      onClick={this.onClickDelete.bind (this, card.id, card.name, dispatch)}
+                    />
+                  </div>
               </div>
             );
           }

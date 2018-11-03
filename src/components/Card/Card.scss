@@ -10,7 +10,7 @@ $card-width: 300px;
   align-items: center;
   position: relative;
 
-  padding: 10px 8px 20px;
+  padding: 10px 8px;
   border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 4px;
   
@@ -23,15 +23,31 @@ $card-width: 300px;
   max-width: 100%;
 }
 
-.fa-edit {
-  position: absolute;
-  right: 4px;
-  bottom: 8px;
-
-  display: flex;
-  align-self: flex-end;
-  // padding: 4px;
+i {
+  margin-right: 5px;
   cursor: pointer;
   color: rgba(0, 0, 0, 0.4);
+  
+  &:hover, &:focus {
+    color: #0089b3;
+  }
+
 }
 
+.icons-bottom {
+  display: flex;
+  align-self: flex-end;
+}
+
+
+// .fa-edit {
+//   position: absolute;
+//   right: 10px;
+//   bottom: 8px;
+// }
+
+// .fa-trash-alt {
+//   position: absolute;
+//   right: 4px;
+//   bottom: 8px;
+// }
