@@ -24,7 +24,7 @@ class Gallery extends React.Component {
                   <button className="addNewButton"
                           onClick = {() => console.log ('Add new item')}>
                     Add new item
-                    <i class="fas fa-plus" />
+                    <i className="fas fa-plus" />
                   </button>
                 </div>
               </div>

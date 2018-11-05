@@ -21,15 +21,13 @@ button {
 
 .unselected {
   background-color: rgba(0, 0, 0, 0.1);
+  &:hover {
+    background-color: #0089b3;
+    color: #ffffff;
+  }
 }
 
 .selected {
   background-color: #0089b3;
   color: #ffffff;
-}
-
-.new {
-  background-color: #00cc66;
-  color: #ffffff;
-  margin-right: auto;
 }
