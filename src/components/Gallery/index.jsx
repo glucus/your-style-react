@@ -19,7 +19,14 @@ class Gallery extends React.Component {
                 <CategoryTabs categories={categories}
                               categoryName={categoryName}
                 />
-                <h2>{categoryDescription}</h2>
+                <div className="headingAndButton">
+                  <h2>{categoryDescription}</h2>
+                  <button className="addNewButton"
+                          onClick = {() => console.log ('Add new item')}>
+                    Add new item
+                    <i class="fas fa-plus" />
+                  </button>
+                </div>
               </div>
               <div className="gallery">
                   <Cards cards={filteredClothes} />
