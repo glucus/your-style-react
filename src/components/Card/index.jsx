@@ -6,7 +6,7 @@ import Form from '../Form';
 
 class Card extends React.Component {
 
-  state={
+  state = {
     formHidden: true,
     name: this.props.card.name,
     description: this.props.card.description
@@ -46,16 +46,18 @@ class Card extends React.Component {
 
             return (
               <div className="card">
-                  <img className="thumbnail" src={card.image} alt="" />
-                  {
-                    formHidden ? 
-                    <React.Fragment>
-                      <h4>{name}</h4>
-                      <div>{description}</div>
-                    </React.Fragment>
-                    :
-                    <Form name={name} description={description} handleSubmit={this.handleSubmit} />
-                  }
+                  <div className="card-info">
+                    <img className="thumbnail" src={card.image} alt="" />
+                    {
+                      formHidden ? 
+                      <React.Fragment>
+                        <h4>{name}</h4>
+                        <div>{description}</div>
+                      </React.Fragment>
+                      :
+                      <Form name={name} description={description} handleSubmit={this.handleSubmit} />
+                    }
+                  </div>
                   {formHidden && <div className="icons-bottom">
                     <i className="far fa-edit" onClick={this.toggleForm} />
                     <i className="far fa-trash-alt" 

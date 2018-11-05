@@ -29,7 +29,8 @@ class Form extends React.Component {
 
   render () {
 
-    const fieldsArr = ['name', 'description'];
+    const fieldsArr = Object.keys(this.state); // Object.getOwnPropertyNames();
+    // console.log(fieldsArr);
 
     const updatedName = this.state.name || this.props.name;
     const updatedDescription = this.state.description || this.props.description;
