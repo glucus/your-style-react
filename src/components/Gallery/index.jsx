@@ -9,7 +9,8 @@ import CategoryTabs from '../CategoryTabs';
 class Gallery extends React.Component {
 
   state = {
-    showNewCard: false   
+    showNewCard: false, 
+    buttonText: 'Add new item'
   }
 
   render () {
@@ -55,11 +56,20 @@ class Gallery extends React.Component {
                 />
                 <div className="headingAndButton">
                   <h2>{categoryDescription}</h2>
+                  {!this.state.showNewCard ? 
                   <button className="addNewButton"
                           onClick = {addNewItem.bind(this, newCard)}>
                     Add new item
                     <i className="fas fa-plus" />
                   </button>
+                  :
+                  <button className="addNewButtonCancel"
+                    onClick = { () => this.setState({ showNewCard: !this.state.showNewCard }) }>
+                    Cancel
+                    <i className="fas fa-times" />
+                  </button>
+                }
+
                 </div>
               </div>
               <div className="gallery">

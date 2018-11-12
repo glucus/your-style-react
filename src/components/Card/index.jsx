@@ -7,7 +7,7 @@ import Form from '../Form';
 class Card extends React.Component {
 
   state = {
-    formHidden: true,
+    formHidden: this.props.formHidden,
     name: this.props.card.name,
     description: this.props.card.description,
     image: this.props.card.image
@@ -49,10 +49,10 @@ class Card extends React.Component {
             return (
               <div className="card">
                   <div className="card-info">
+                    <img className="thumbnail" src={image} alt='' />
                     {
                       formHidden ? 
                       <React.Fragment>
-                        <img className="thumbnail" src={image} alt='' />
                         <h4>{name}</h4>
                         <div>{description}</div>
                       </React.Fragment>

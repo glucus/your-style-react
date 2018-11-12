@@ -49,11 +49,32 @@ h2 {
   }
 }
 
-.fa-plus {
+.fa-plus, .fa-times  {
   color: #ffffff;
   padding-left: 0.5em;
   
   &:hover, &:focus {
     color: #ffffff;
+  }
+}
+
+.addNewButtonCancel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+
+  border: none;
+  outline: none;
+  cursor: pointer;
+
+  padding: 0.5em 1em 0.5em 1.5em;
+  margin-right: 1em;
+
+  background-color: #aeaeae;
+  color: #ffffff;
+
+  &:hover {
+    background-color: #aeaeae;
   }
 }
