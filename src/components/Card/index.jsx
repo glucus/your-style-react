@@ -40,17 +40,17 @@ class Card extends React.Component {
             const { dispatch } = value;
 
             return (
-              <div className="card">
+              <div className="card" key={card.id}>
                   <div className="card-info">
                   {formHidden ? 
-                      <CardInner key={card.id} card={card} toggleForm={this.toggleForm} />
-                      :
-                      <Form key={card.id} card={card} />
+                      <CardInner card={card} />
+                        :
+                      <Form card={card} />
                   }
                   </div>
                   {formHidden && <div className="icons-bottom">
                     <i className="far fa-edit"
-                      onClick={this.props.toggleForm.bind (this, card.id)} />
+                      onClick={this.toggleForm.bind (this, card.id)} />
                     <i className="far fa-trash-alt" 
                         onClick={this.onClickDelete.bind (this, card.id, card.name, dispatch)}
                     />

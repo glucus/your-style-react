@@ -13,6 +13,11 @@ const filterClothes = (categoryName) => {
   } return clothes;
 };
 
+const alreadyExists = (arr, id) => {
+  const result = arr.filter (item => item.id === id);
+  return result;
+}
+
 const reducer = (state, action) => {
   switch (action.type) {
 
@@ -45,6 +50,31 @@ const reducer = (state, action) => {
         categoryDescription: categoryDescription,
         filteredClothes: filteredClothes
        };
+    }
+
+
+    case 'EDIT_ITEM': {
+      const newItem = action.payload;
+
+      const found = alreadyExists(clothes, newItem.id);
+      console.log ('item found: ', found);
+
+      const result = found.length > 0 ? found[0] : null ;
+
+      if (result) {
+
+        console.log (`replacing ${result.name} with ${newItem.name}`);
+        //array.splice(start, deleteCount[, item1[, item2[, ...]]])
+
+        const updatedClothes = clothes.splice(result.id, 1, newItem);
+        return {
+          ...state,
+          clothes: updatedClothes
+        }
+      }
+
+      console.log ('item not found, add item action should be called');
+      return state;
     }
 
 

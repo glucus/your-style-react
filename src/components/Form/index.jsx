@@ -4,8 +4,8 @@ import { Consumer } from '../../context';
 
 class Form extends React.Component {
 
-  constructor () {
-    super();
+  constructor (props) {
+    super(props);
 
     const { card } = this.props;
 
@@ -33,8 +33,13 @@ class Form extends React.Component {
 
     const newItem = {id, name, description, image};
 
-    dispatch ({
-        type: 'ADD_NEW_ITEM',
+    // dispatch ({
+    //     type: 'ADD_NEW_ITEM',
+    //     payload: newItem
+    // })
+
+        dispatch ({
+        type: 'EDIT_ITEM',
         payload: newItem
     })
 }
