@@ -8,8 +8,9 @@ class Form extends React.Component {
     super();
 
     this.state = {
+      image: '',
       name: '',
-      description: ''
+      description: '',
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -34,6 +35,7 @@ class Form extends React.Component {
 
     const updatedName = this.state.name || this.props.name;
     const updatedDescription = this.state.description || this.props.description;
+    const updatedImage = this.state.image || this.props.image;
 
     return (
       <form>
@@ -50,7 +52,7 @@ class Form extends React.Component {
         )}
         <div className="icons-bottom">
           <i className="fas fa-check" onClick={
-            this.props.handleSubmit.bind(this, updatedName, updatedDescription)
+            this.props.handleSubmit.bind(this, updatedName, updatedDescription, updatedImage)
           } />
         </div>
       </form>

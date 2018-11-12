@@ -5,6 +5,14 @@ const Context = React.createContext();
 
 // const filterByParameter = (item, parameter, targetValue) => item[parameter] === targetValue;
 
+const filterClothes = (categoryName) => {
+  if (categoryName) {
+    return clothes.filter(
+      item => item.category === categoryName
+    );
+  } return clothes;
+};
+
 const reducer = (state, action) => {
   switch (action.type) {
 
@@ -23,19 +31,11 @@ const reducer = (state, action) => {
         };
       } return state;
     }
-        
+          
     case 'SELECT_CATEGORY': {
 
       const categoryName = action.payload.categoryName;
       const categoryDescription = action.payload.categoryDescription;
-
-      const filterClothes = (categoryName) => {
-        if (categoryName) {
-          return clothes.filter(
-            item => item.category === categoryName
-          );
-        } return clothes;
-      };
 
       const filteredClothes = filterClothes(categoryName);
 
@@ -45,7 +45,31 @@ const reducer = (state, action) => {
         categoryDescription: categoryDescription,
         filteredClothes: filteredClothes
        };
-    } 
+    }
+
+
+    case 'ADD_NEW_ITEM': {
+
+      const newItem = action.payload;
+      const newClothes = [...state.clothes, newItem];
+
+      const newFilteredClothes = () => {
+        if (state.categoryName === newItem.category || state.categoryName === '') {
+          return [newItem, ...state.filteredClothes];
+        }
+        return [...state.filteredClothes];
+      }
+
+      console.log (newFilteredClothes());
+
+      console.log('newClothes', newClothes);
+
+      return { 
+        ...state,
+         clothes: newClothes,
+         filteredClothes: newFilteredClothes()
+      }
+    }
 
     default: 
         return state;

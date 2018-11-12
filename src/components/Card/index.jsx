@@ -9,7 +9,8 @@ class Card extends React.Component {
   state = {
     formHidden: true,
     name: this.props.card.name,
-    description: this.props.card.description
+    description: this.props.card.description,
+    image: this.props.card.image
   }
 
   onClickDelete = (id, name, dispatch) => {
@@ -25,11 +26,12 @@ class Card extends React.Component {
     })
   }
 
-  handleSubmit = (name, description, e) => {
+  handleSubmit = (name, description, image, e) => {
     
     this.setState ({
       name: name,
       description: description,
+      image: image,
       formHidden: !this.state.formHidden
     })
   };
@@ -42,20 +44,20 @@ class Card extends React.Component {
 
             const { card } = this.props;
             const { dispatch } = value;
-            const { formHidden, name, description } = this.state;
+            const { formHidden, name, description, image } = this.state;
 
             return (
               <div className="card">
                   <div className="card-info">
-                    <img className="thumbnail" src={card.image} alt="" />
                     {
                       formHidden ? 
                       <React.Fragment>
+                        <img className="thumbnail" src={image} alt='' />
                         <h4>{name}</h4>
                         <div>{description}</div>
                       </React.Fragment>
                       :
-                      <Form name={name} description={description} handleSubmit={this.handleSubmit} />
+                      <Form name={name} description={description} image={image} handleSubmit={this.handleSubmit} />
                     }
                   </div>
                   {formHidden && <div className="icons-bottom">
