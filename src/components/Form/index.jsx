@@ -1,6 +1,5 @@
 import React from 'react';
 import './Form.scss';
-import { throws } from 'assert';
 import { Consumer } from '../../context';
 
 class Form extends React.Component {
@@ -8,14 +7,16 @@ class Form extends React.Component {
   constructor () {
     super();
 
+    const { card } = this.props;
+
     this.state = {
-      image: '',
-      name: '',
-      description: '',
+      id: card.id,
+      image: card.image,
+      name: card.name,
+      description: card.description
     };
 
     this.handleChange = this.handleChange.bind(this);
-
   }
 
   handleChange = (e) => {
@@ -28,9 +29,9 @@ class Form extends React.Component {
     })
   };
 
-  handleSubmit = (name, description, image, id, dispatch) => {
+  handleSubmit = (id, name, description, image, dispatch) => {
 
-    const newItem = {name, description, image, id};
+    const newItem = {id, name, description, image};
 
     dispatch ({
         type: 'ADD_NEW_ITEM',
@@ -51,10 +52,7 @@ class Form extends React.Component {
 
             const { dispatch } = value;
 
-              const updatedName = this.state.name || this.props.name;
-              const updatedDescription = this.state.description || this.props.description;
-              const updatedImage = this.state.image || this.props.image;
-              const id = this.props.id;
+            const { id, name, description, image } = this.state;
 
               return (
                 <form>
@@ -71,7 +69,7 @@ class Form extends React.Component {
                   )}
                   <div className="icons-bottom">
                     <i className="fas fa-check" onClick={
-                      this.handleSubmit.bind(this, updatedName, updatedDescription, updatedImage, id, dispatch)
+                      this.handleSubmit.bind(this, id, name, description, image, dispatch)
                     } />
                   </div>
                 </form>

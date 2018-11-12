@@ -2,15 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './Card.scss';
 import { Consumer } from '../../context';
+
+import CardInner from './CardInner';
 import Form from '../Form';
 
 class Card extends React.Component {
 
   state = {
-    formHidden: this.props.formHidden,
-    name: this.props.card.name,
-    description: this.props.card.description,
-    image: this.props.card.image
+    formHidden: true
   }
 
   onClickDelete = (id, name, dispatch) => {
@@ -20,23 +19,18 @@ class Card extends React.Component {
     })
   }
 
-  toggleForm = () => {
+  toggleForm = (id, e) => {
+    // console.log (`form toggled for card with id: ${id}`);
+
     this.setState ({
       formHidden: !this.state.formHidden
     })
   }
 
-  handleSubmit = (name, description, image, e) => {
-    
-    this.setState ({
-      name: name,
-      description: description,
-      image: image,
-      formHidden: !this.state.formHidden
-    })
-  };
-
   render () {
+
+    const { formHidden } = this.state;
+
     return (
       <Consumer>
         {
@@ -44,24 +38,19 @@ class Card extends React.Component {
 
             const { card } = this.props;
             const { dispatch } = value;
-            const { formHidden, name, description, image } = this.state;
 
             return (
               <div className="card">
                   <div className="card-info">
-                    <img className="thumbnail" src={image} alt='' />
-                    {
-                      formHidden ? 
-                      <React.Fragment>
-                        <h4>{name}</h4>
-                        <div>{description}</div>
-                      </React.Fragment>
+                  {formHidden ? 
+                      <CardInner key={card.id} card={card} toggleForm={this.toggleForm} />
                       :
-                      <Form name={name} description={description} image={image} handleSubmit={this.handleSubmit} />
-                    }
+                      <Form key={card.id} card={card} />
+                  }
                   </div>
                   {formHidden && <div className="icons-bottom">
-                    <i className="far fa-edit" onClick={this.toggleForm} />
+                    <i className="far fa-edit"
+                      onClick={this.props.toggleForm.bind (this, card.id)} />
                     <i className="far fa-trash-alt" 
                         onClick={this.onClickDelete.bind (this, card.id, card.name, dispatch)}
                     />
