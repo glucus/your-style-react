@@ -43,46 +43,45 @@ const reducer = (state, action) => {
       const newItem = action.payload;
 
       const found = alreadyExists(clothes, newItem.id);
-      console.log ('item found: ', found);
 
-      const result = found.length > 0 ? found[0] : null ;
+      const result = found[0] || null ;
 
       if (result) {
-
+        console.log (`existing item with id ${newItem.id} found: `, found);
         console.log (`replacing ${result.name} with ${newItem.name}`);
         //array.splice(start, deleteCount[, item1[, item2[, ...]]])
 
         const updatedClothes = clothes.splice(result.id, 1, newItem);
+
         return {
           ...state,
           clothes: updatedClothes
-        }
+        }   
       }
+      
+        console.log ('item not found, new item added');
+        const updatedClothes = [newItem, ...state.clothes];
 
-      console.log ('item not found, add item action should be called');
-      return state;
+        return {
+          ...state,
+          clothes: updatedClothes
+        }  
+      
     }
 
 
-    case 'ADD_NEW_ITEM': {
+    // case 'ADD_NEW_ITEM': {
 
-      const newItem = action.payload;
-      const newClothes = [...state.clothes, newItem];
+    //   const newItem = action.payload;
+    //   const updatedClothes = [...state.clothes, newItem];
 
-      // const newFilteredClothes = () => {
-      //   if (state.categoryName === newItem.category || state.categoryName === '') {
-      //     return [newItem, ...state.filteredClothes];
-      //   }
-      //   return [...state.filteredClothes];
-      // }
+    //   console.log('newClothes', newItem);
 
-      console.log('newClothes', newClothes);
-
-      return { 
-        ...state,
-         clothes: newClothes
-      }
-    }
+    //   return { 
+    //     ...state,
+    //      clothes: updatedClothes
+    //   }
+    // }
 
     default: 
         return state;

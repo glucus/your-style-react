@@ -20,7 +20,7 @@ class Card extends React.Component {
   }
 
   toggleForm = (id, e) => {
-    // console.log (`form toggled for card with id: ${id}`);
+    console.log (`toggling form for card with id ${id}`);
 
     this.setState ({
       formHidden: !this.state.formHidden
@@ -45,7 +45,7 @@ class Card extends React.Component {
                   {formHidden ? 
                       <CardInner card={card} />
                         :
-                      <Form card={card} />
+                      <Form card={card} toggleForm={this.toggleForm} />
                   }
                   </div>
                   {formHidden && <div className="icons-bottom">

@@ -5,6 +5,7 @@ import { Consumer } from '../../context';
 import Cards from '../Cards';
 import Card from '../Card';
 import CategoryTabs from '../CategoryTabs';
+import { dispatch } from 'rxjs/internal/observable/pairs';
 
 class Gallery extends React.Component {
 
@@ -25,13 +26,18 @@ class Gallery extends React.Component {
     return (
       <Consumer>
         {value => {
-          const { clothes, categories, categoryName, categoryDescription } = value;
+          const { clothes, categories, categoryName, categoryDescription, dispatch } = value;
 
           const filteredClothes = this.filterClothes(clothes, categoryName);
 
-          const addNewItem = () => {
-            this.setState({
-              showNewCard: !this.state.showNewCard
+          const addNewItem = (newItem, dispatch) => {
+            // this.setState({
+            //   showNewCard: !this.state.showNewCard
+            // })
+
+            dispatch ({
+              type: 'EDIT_ITEM',
+              payload: newItem
             })
           }
 
@@ -54,7 +60,7 @@ class Gallery extends React.Component {
                   <h2>{categoryDescription}</h2>
                   {!this.state.showNewCard ? 
                   <button className="addNewButton"
-                          onClick = {addNewItem.bind(this, newCard)}>
+                          onClick = {addNewItem.bind(this, newCard, dispatch)}>
                     Add new item
                     <i className="fas fa-plus" />
                   </button>
@@ -69,7 +75,7 @@ class Gallery extends React.Component {
                 </div>
               </div>
               <div className="gallery">
-                  {this.state.showNewCard && <Card key={clothes.length} id={clothes.length} card={newCard} formHidden={false} />}
+                  {/* {this.state.showNewCard && <Card key={clothes.length} id={clothes.length} card={newCard} formHidden={false} />} */}
                   <Cards cards={filteredClothes} />
               </div>
             </React.Fragment>

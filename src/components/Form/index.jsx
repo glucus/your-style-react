@@ -29,19 +29,23 @@ class Form extends React.Component {
     })
   };
 
+
   handleSubmit = (id, name, description, image, dispatch) => {
 
     const newItem = {id, name, description, image};
 
-    // dispatch ({
-    //     type: 'ADD_NEW_ITEM',
-    //     payload: newItem
-    // })
+       console.log ('submitting item', newItem.id);
 
         dispatch ({
-        type: 'EDIT_ITEM',
+        type: 'SUBMIT_ITEM',
         payload: newItem
     })
+}
+
+onClickSubmit = (id, name, description, image, dispatch) => {
+  this.props.toggleForm (id);
+  // this.handleSubmit.bind (this, id, name, description, image, dispatch)
+  this.handleSubmit (id, name, description, image, dispatch);
 }
 
 
@@ -73,9 +77,9 @@ class Form extends React.Component {
                             </div>
                   )}
                   <div className="icons-bottom">
-                    <i className="fas fa-check" onClick={
-                      this.handleSubmit.bind(this, id, name, description, image, dispatch)
-                    } />
+                    <i className="fas fa-check"
+                       onClick = {this.onClickSubmit.bind (this, id, name, description, image, dispatch)}
+                    />
                   </div>
                 </form>
               );
