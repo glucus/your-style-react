@@ -63,7 +63,7 @@ const reducer = (state, action) => {
         }   
       }
 
-        const updatedClothes = [...state.clothes, {...newItem, id: clothes.length}];
+        const updatedClothes = [{...newItem, id: clothes.length}, ...state.clothes];
         console.log (`new item with id ${clothes.length} added`, updatedClothes);
 
         return {
