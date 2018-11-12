@@ -39,10 +39,12 @@ const reducer = (state, action) => {
     }
 
 
-    case 'EDIT_ITEM': {
+    case 'SUBMIT_ITEM': {
       const newItem = action.payload;
+      console.log ('newItem', newItem);
 
       const found = alreadyExists(clothes, newItem.id);
+      console.log ('found', found);
 
       const result = found[0] || null ;
 
@@ -68,20 +70,6 @@ const reducer = (state, action) => {
         }  
       
     }
-
-
-    // case 'ADD_NEW_ITEM': {
-
-    //   const newItem = action.payload;
-    //   const updatedClothes = [...state.clothes, newItem];
-
-    //   console.log('newClothes', newItem);
-
-    //   return { 
-    //     ...state,
-    //      clothes: updatedClothes
-    //   }
-    // }
 
     default: 
         return state;

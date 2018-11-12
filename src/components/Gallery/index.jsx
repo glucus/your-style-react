@@ -3,15 +3,14 @@ import './Gallery.scss';
 
 import { Consumer } from '../../context';
 import Cards from '../Cards';
-import Card from '../Card';
+import Form from '../Form';
 import CategoryTabs from '../CategoryTabs';
 import { dispatch } from 'rxjs/internal/observable/pairs';
 
 class Gallery extends React.Component {
 
   state = {
-    showNewCard: false, 
-    buttonText: 'Add new item'
+    showNewCard: false 
   }
 
   filterClothes = (arr, categoryName) => {
@@ -22,25 +21,28 @@ class Gallery extends React.Component {
     } return arr;
   };
 
+  toggleForm = () => {
+    this.setState ({ showNewCard: !this.state.showNewCard })
+  }
+
+  toggleCardForm = (id, e) => {
+    // console.log (`toggling form for card with id ${id}`);
+    this.setState ({
+      formHidden: !this.state.formHidden
+    })
+  }
+
   render () {
     return (
       <Consumer>
         {value => {
-          const { clothes, categories, categoryName, categoryDescription, dispatch } = value;
+          const { clothes, categories, categoryName, categoryDescription } = value;
+
+          const { showNewCard } = this.state;
 
           const filteredClothes = this.filterClothes(clothes, categoryName);
 
-          const addNewItem = (newItem, dispatch) => {
-            // this.setState({
-            //   showNewCard: !this.state.showNewCard
-            // })
-
-            dispatch ({
-              type: 'EDIT_ITEM',
-              payload: newItem
-            })
-          }
-
+          // const newCard = {};
           const newCard = {
             id: clothes.length,
             name: 'new item',
@@ -48,7 +50,7 @@ class Gallery extends React.Component {
             description: 'new item',
             category: '',
             target: ''
-        }
+        };
 
           return (
             <React.Fragment>
@@ -60,13 +62,14 @@ class Gallery extends React.Component {
                   <h2>{categoryDescription}</h2>
                   {!this.state.showNewCard ? 
                   <button className="addNewButton"
-                          onClick = {addNewItem.bind(this, newCard, dispatch)}>
+                          onClick={this.toggleForm}
+                  >
                     Add new item
                     <i className="fas fa-plus" />
                   </button>
                   :
                   <button className="addNewButtonCancel"
-                    onClick = { () => this.setState({ showNewCard: !this.state.showNewCard }) }>
+                    onClick = {this.toggleForm}>
                     Cancel
                     <i className="fas fa-times" />
                   </button>
@@ -75,7 +78,9 @@ class Gallery extends React.Component {
                 </div>
               </div>
               <div className="gallery">
-                  {/* {this.state.showNewCard && <Card key={clothes.length} id={clothes.length} card={newCard} formHidden={false} />} */}
+                  {showNewCard && <div className="card">
+                      <Form card={newCard} toggleForm={this.toggleCardForm} />
+                  </div>} 
                   <Cards cards={filteredClothes} />
               </div>
             </React.Fragment>

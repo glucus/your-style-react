@@ -2,6 +2,15 @@ import React from 'react';
 import './Form.scss';
 import { Consumer } from '../../context';
 
+        //   const newCard = {
+        //     id: clothes.length,
+        //     name: 'new item',
+        //     image: 'https://via.placeholder.com/210x250.png?text=your-style.com',
+        //     description: 'new item',
+        //     category: '',
+        //     target: ''
+        // }
+
 class Form extends React.Component {
 
   constructor (props) {
@@ -30,11 +39,8 @@ class Form extends React.Component {
   };
 
 
-  handleSubmit = (id, name, description, image, dispatch) => {
-
-    const newItem = {id, name, description, image};
-
-       console.log ('submitting item', newItem.id);
+  handleSubmit = (newItem, dispatch) => {
+       console.log ('submitting item with id', newItem.id);
 
         dispatch ({
         type: 'SUBMIT_ITEM',
@@ -44,8 +50,9 @@ class Form extends React.Component {
 
 onClickSubmit = (id, name, description, image, dispatch) => {
   this.props.toggleForm (id);
-  // this.handleSubmit.bind (this, id, name, description, image, dispatch)
-  this.handleSubmit (id, name, description, image, dispatch);
+
+  const newItem = {id, name, description, image};
+  this.handleSubmit (newItem, dispatch);
 }
 
 
@@ -73,6 +80,7 @@ onClickSubmit = (id, name, description, image, dispatch) => {
                                     value={this.state[item]}
                                     onChange={this.handleChange}
                                     placeholder={this.props[item]}
+                                    required
                               />
                             </div>
                   )}
