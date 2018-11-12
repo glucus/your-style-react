@@ -49,20 +49,22 @@ const reducer = (state, action) => {
       const result = found[0] || null ;
 
       if (result) {
-        console.log (`existing item with id ${newItem.id} found: `, found);
-        console.log (`replacing ${result.name} with ${newItem.name}`);
-        //array.splice(start, deleteCount[, item1[, item2[, ...]]])
+        console.log (`replacing existing item`, result, 'by', newItem);
 
-        const updatedClothes = clothes.splice(result.id, 1, newItem);
+        const restClothes = clothes.filter (item => item.id !== newItem.id);
+        const updatedClothes = [newItem, ...restClothes];
+
+        // console.log ('rest clothes', restClothes);
+        // console.log (`updated clothes: `, updatedClothes);
 
         return {
           ...state,
           clothes: updatedClothes
         }   
       }
-      
-        console.log ('item not found, new item added');
-        const updatedClothes = [newItem, ...state.clothes];
+
+        const updatedClothes = [...state.clothes, {...newItem, id: clothes.length}];
+        console.log (`new item with id ${clothes.length} added`, updatedClothes);
 
         return {
           ...state,

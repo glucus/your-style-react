@@ -28,7 +28,8 @@ class Gallery extends React.Component {
   toggleCardForm = (id, e) => {
     // console.log (`toggling form for card with id ${id}`);
     this.setState ({
-      formHidden: !this.state.formHidden
+      formHidden: !this.state.formHidden,
+      showNewCard: !this.state.showNewCard
     })
   }
 
@@ -44,7 +45,7 @@ class Gallery extends React.Component {
 
           // const newCard = {};
           const newCard = {
-            id: clothes.length,
+            id: null,
             name: 'new item',
             image: 'https://via.placeholder.com/210x250.png?text=your-style.com',
             description: 'new item',

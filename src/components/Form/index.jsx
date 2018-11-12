@@ -2,15 +2,6 @@ import React from 'react';
 import './Form.scss';
 import { Consumer } from '../../context';
 
-        //   const newCard = {
-        //     id: clothes.length,
-        //     name: 'new item',
-        //     image: 'https://via.placeholder.com/210x250.png?text=your-style.com',
-        //     description: 'new item',
-        //     category: '',
-        //     target: ''
-        // }
-
 class Form extends React.Component {
 
   constructor (props) {
@@ -63,7 +54,8 @@ onClickSubmit = (id, name, description, image, dispatch) => {
           {
             value => {
             
-              const fieldsArr = Object.keys(this.state); // Object.getOwnPropertyNames();
+              const fieldsArr = ['image', 'name', 'description'];
+              // const fieldsArr = Object.keys(this.state); // Object.getOwnPropertyNames();
             // console.log(fieldsArr);
 
             const { dispatch } = value;
@@ -80,7 +72,6 @@ onClickSubmit = (id, name, description, image, dispatch) => {
                                     value={this.state[item]}
                                     onChange={this.handleChange}
                                     placeholder={this.props[item]}
-                                    required
                               />
                             </div>
                   )}
