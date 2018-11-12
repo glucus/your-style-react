@@ -13,27 +13,23 @@ class Gallery extends React.Component {
     buttonText: 'Add new item'
   }
 
+  filterClothes = (arr, categoryName) => {
+    if (categoryName) {
+      return arr.filter(
+        item => item.category === categoryName
+      );
+    } return arr;
+  };
+
   render () {
     return (
       <Consumer>
         {value => {
-          const { filteredClothes, clothes, categories, categoryName, categoryDescription, dispatch } = value;
+          const { clothes, categories, categoryName, categoryDescription } = value;
 
-          const selectCategory = (categoryName, categoryDescription) => {
-            dispatch ({
-              type: 'SELECT_CATEGORY',
-              payload: { categoryName, categoryDescription }
-            })
-          };
+          const filteredClothes = this.filterClothes(clothes, categoryName);
 
-          const addNewItem = (item) => {
-            // console.log ('Add new item clicked');
-
-            // dispatch ({
-            //   type: 'ADD_NEW_ITEM',
-            //   payload: item 
-            // })
-
+          const addNewItem = () => {
             this.setState({
               showNewCard: !this.state.showNewCard
             })
@@ -73,7 +69,7 @@ class Gallery extends React.Component {
                 </div>
               </div>
               <div className="gallery">
-                  {this.state.showNewCard && <Card key={clothes.length} card={newCard} formHidden={false} />}
+                  {this.state.showNewCard && <Card key={clothes.length} id={clothes.length} card={newCard} formHidden={false} />}
                   <Cards cards={filteredClothes} />
               </div>
             </React.Fragment>
