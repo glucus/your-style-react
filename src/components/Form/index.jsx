@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import './Form.scss';
 import { Consumer } from '../../context';
 
@@ -13,7 +15,8 @@ class Form extends React.Component {
       id: card.id,
       image: card.image,
       name: card.name,
-      description: card.description
+      description: card.description,
+      category: card.category
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -23,6 +26,8 @@ class Form extends React.Component {
 
     const field = e.target.name;
     const value = e.target.value;
+
+    console.log ('selected', field, value);
 
     this.setState ({
       [field]: value
@@ -39,10 +44,10 @@ class Form extends React.Component {
     })
 }
 
-onClickSubmit = (id, name, description, image, dispatch) => {
+onClickSubmit = (id, name, description, image, category, dispatch) => {
   this.props.toggleForm (id);
 
-  const newItem = {id, name, description, image};
+  const newItem = {id, name, description, image, category};
   this.handleSubmit (newItem, dispatch);
 }
 
@@ -55,12 +60,13 @@ onClickSubmit = (id, name, description, image, dispatch) => {
             value => {
             
               const fieldsArr = ['image', 'name', 'description'];
+
               // const fieldsArr = Object.keys(this.state); // Object.getOwnPropertyNames();
             // console.log(fieldsArr);
 
-            const { dispatch } = value;
+            const { dispatch, categories } = value;
 
-            const { id, name, description, image } = this.state;
+            const { id, name, description, image, category } = this.state;
 
               return (
                 <form>
@@ -75,9 +81,21 @@ onClickSubmit = (id, name, description, image, dispatch) => {
                               />
                             </div>
                   )}
+                   <div className="form-row">
+                    <label className="form-label">category</label>
+                    <select value={this.state.category} name='category' onChange={this.handleChange}>
+                      {categories.map (category => <option 
+                                                      key={category.name}
+                                                      value={category.name}
+                                                  >
+                                                        {category.description}
+                                                    </option>
+                      )}
+                    </select>
+                    </div>
                   <div className="icons-bottom">
                     <i className="fas fa-check"
-                       onClick = {this.onClickSubmit.bind (this, id, name, description, image, dispatch)}
+                       onClick = {this.onClickSubmit.bind (this, id, name, description, image, category, dispatch)}
                     />
                   </div>
                 </form>
@@ -88,5 +106,11 @@ onClickSubmit = (id, name, description, image, dispatch) => {
     )
   }
 }
+
+
+Form.propTypes = {
+  card: PropTypes.object.isRequired//,
+  // categories: PropTypes.arrayOf(PropTypes.object).isRequired
+};
 
 export default Form;

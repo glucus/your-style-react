@@ -20,7 +20,9 @@ const reducer = (state, action) => {
       );
 
       const answer = window.confirm (`Are you sure you want to delete ${action.payload.name}?`);
-      if (answer) { 
+      if (answer) {
+
+        console.log (`deleting ${action.payload.name}`);
         return {
            ...state,
             clothes: clothesAfterDeletion
