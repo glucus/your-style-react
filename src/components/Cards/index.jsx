@@ -12,7 +12,7 @@ class Cards extends React.Component {
     return (
       <React.Fragment>
         {cards && cards.map (
-          card => <Card key={card.id} card={card} />
+          card => <Card key={card.id} card={card} formHidden={true} />
         )}
       </React.Fragment>
     );

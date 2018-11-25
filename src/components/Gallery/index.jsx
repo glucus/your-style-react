@@ -1,16 +1,12 @@
 import React from 'react';
 import './Gallery.scss';
-
 import { Consumer } from '../../context';
-import Cards from '../Cards';
-import Form from '../Form';
+
 import CategoryTabs from '../CategoryTabs';
+import Card from '../Card';
+import Cards from '../Cards';
 
 class Gallery extends React.Component {
-
-  state = {
-    showNewCard: false 
-  }
 
   filterClothes = (arr, categoryName) => {
     if (categoryName) {
@@ -20,28 +16,19 @@ class Gallery extends React.Component {
     } return arr;
   };
 
-
-  toggleForm = (id, e) => {
-    // console.log (`toggling form for card with id ${id}`);
-
-    this.setState ({
-      formHidden: !this.state.formHidden,
-      showNewCard: !this.state.showNewCard
-    })
+  toggleNewCard = (id, dispatch) => {
+    console.log (`toggling form for card with id ${id}`);
+    dispatch ({type: 'TOGGLE_NEW_CARD'});
   }
 
   render () {
     return (
       <Consumer>
         {value => {
-          const { clothes, categories, categoryName, categoryDescription } = value;
 
-          const { showNewCard } = this.state;
+          const { clothes, categories, categoryName, categoryDescription, showNewCard, dispatch } = value;
 
           const filteredClothes = this.filterClothes(clothes, categoryName);
-
-          // const newCard = {};
-
           const newId = clothes.length;
 
           const newCard = {
@@ -61,27 +48,24 @@ class Gallery extends React.Component {
                 />
                 <div className="headingAndButton">
                   <h2>{categoryDescription}</h2>
-                  {!this.state.showNewCard ? 
-                  <button className="addNewButton"
-                          onClick={this.toggleForm.bind (this, newId)}
-                  >
-                    Add new item
-                    <i className="fas fa-plus" />
-                  </button>
-                  :
-                  <button className="addNewButtonCancel"
-                    onClick = {this.toggleForm.bind (this, newId)}>
-                    Cancel
-                    <i className="fas fa-times" />
-                  </button>
-                }
-
+                  {
+                    !showNewCard ? 
+                      <button className="addNewButton"
+                        onClick={this.toggleNewCard.bind (this, newId, dispatch)}>
+                          Add new item
+                          <i className="fas fa-plus" />
+                      </button>
+                    :
+                      <button className="addNewButtonCancel"
+                        onClick = {this.toggleNewCard.bind (this, newId, dispatch)}>
+                          Cancel
+                          <i className="fas fa-times" />
+                      </button>
+                  }
                 </div>
               </div>
               <div className="gallery">
-                  {showNewCard && <div className="card">
-                      <Form card={newCard} toggleForm={this.toggleForm} />
-                  </div>} 
+                  {showNewCard && <Card card={newCard} formHidden={false} />} 
                   <Cards cards={filteredClothes} />
               </div>
             </React.Fragment>

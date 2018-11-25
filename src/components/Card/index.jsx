@@ -9,23 +9,34 @@ import Form from '../Form';
 class Card extends React.Component {
 
   state = {
-    formHidden: true
+    formHidden: this.props.formHidden
   }
 
   onClickDelete = (id, name, dispatch) => {
+    
     dispatch ({
       type: 'DELETE_ITEM',
       payload: { id: id, name: name }
     })
   }
 
+  toggleNewCard = (dispatch) => {
+    // console.log (`toggling form for card with id ${id}`);
+    dispatch ({type: 'TOGGLE_NEW_CARD'});
+  }
+
+
   toggleForm = (id, e) => {
     // console.log (`toggling form for card with id ${id}`);
-    
     this.setState ({
       formHidden: !this.state.formHidden
     })
   }
+
+  // toggleNewCard = (id, dispatch) => {
+  //   console.log (`toggling form for card with id ${id}`);
+  //   dispatch ({type: 'TOGGLE_NEW_CARD'});
+  // }
 
   render () {
 
@@ -64,8 +75,13 @@ class Card extends React.Component {
   }
 }
 
+// Card.defaultProps = {
+//   formHidden: true
+// };
+
 Card.propTypes = {
   card: PropTypes.object.isRequired,
+  formHidden: PropTypes.bool
 };
 
 export default Card;

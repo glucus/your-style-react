@@ -12,8 +12,18 @@ const alreadyExists = (arr, id) => {
 const reducer = (state, action) => {
   switch (action.type) {
 
+    case 'TOGGLE_NEW_CARD': {
+
+      const { showNewCard } = state;
+
+      return {
+         ...state,
+         showNewCard: !showNewCard
+      };
+    }
+
     case 'DELETE_ITEM': {
-      const { clothes } = state;
+      const { clothes, showNewCard } = state;
 
       const clothesAfterDeletion = clothes.filter(
         item => item.id.toString() !== action.payload.id.toString()
@@ -25,7 +35,8 @@ const reducer = (state, action) => {
         console.log (`deleting ${action.payload.name}`);
         return {
            ...state,
-            clothes: clothesAfterDeletion
+            clothes: clothesAfterDeletion,
+            showNewCard: !showNewCard
         };
       } return state;
     }
@@ -43,7 +54,7 @@ const reducer = (state, action) => {
 
     case 'SUBMIT_ITEM': {
 
-      const { clothes } = state;
+      const { clothes, showNewCard } = state;
 
       const newItem = action.payload;
       // console.log ('newItem: ', newItem);
@@ -62,7 +73,8 @@ const reducer = (state, action) => {
 
         return {
           ...state,
-          clothes: updatedClothes
+          clothes: updatedClothes,
+          showNewCard: !showNewCard
         }   
       }
 
@@ -72,7 +84,8 @@ const reducer = (state, action) => {
 
         return {
           ...state,
-          clothes: updatedClothes
+          clothes: updatedClothes,
+          showNewCard: !showNewCard
         }  
       } 
 
@@ -90,6 +103,7 @@ export class Provider extends React.Component {
     categories: categories,
     categoryName: '',
     categoryDescription: 'All items',
+    showNewCard: false,
     dispatch: action => this.setState (state => reducer (state, action))
   }
 
