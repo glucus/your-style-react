@@ -49,16 +49,18 @@ h2 {
   &:hover {
     background-color: #00e673;
   }
-}
 
-.fa-plus, .fa-times  {
-  color: #ffffff;
-  padding-left: 0.5em;
-  
-  &:hover, &:focus {
+  & i  {
     color: #ffffff;
+    padding-left: 0.5em;
+    
+    &:hover, &:focus {
+      color: #ffffff;
+    }
   }
 }
+
+
 
 .addNewButtonCancel {
   display: flex;
@@ -78,6 +80,15 @@ h2 {
 
   &:hover {
     background-color: #aeaeae;
+  }
+
+  & i  {
+    color: #ffffff;
+    padding-left: 0.5em;
+    
+    &:hover, &:focus {
+      color: #ffffff;
+    }
   }
 }
 

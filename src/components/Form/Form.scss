@@ -35,7 +35,9 @@ i {
   cursor: pointer;
   color: rgba(0, 0, 0, 0.4);
 
-
+  &:hover, &:focus {
+    color: #0089b3;
+  }
 }
 
 .fa-check {
@@ -43,14 +45,5 @@ i {
 
   &:hover, &:focus {
     color: #00cc66;
-  }
-}
-
-.fa-times {
-  padding: 0 2px;
-  color: rgba(0, 0, 0, 0.4);
-
-  &:hover, &:focus {
-    color: #0089b3;
   }
 }
