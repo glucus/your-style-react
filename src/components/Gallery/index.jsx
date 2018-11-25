@@ -5,7 +5,6 @@ import { Consumer } from '../../context';
 import Cards from '../Cards';
 import Form from '../Form';
 import CategoryTabs from '../CategoryTabs';
-import { dispatch } from 'rxjs/internal/observable/pairs';
 
 class Gallery extends React.Component {
 
@@ -23,7 +22,8 @@ class Gallery extends React.Component {
 
 
   toggleForm = (id, e) => {
-    console.log (`toggling form for card with id ${id}`);
+    // console.log (`toggling form for card with id ${id}`);
+
     this.setState ({
       formHidden: !this.state.formHidden,
       showNewCard: !this.state.showNewCard

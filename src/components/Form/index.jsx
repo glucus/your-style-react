@@ -43,10 +43,12 @@ class Form extends React.Component {
 }
 
 onClickSubmit = (id, name, description, image, category, dispatch) => {
-  this.props.toggleForm (id);
 
+  this.props.toggleForm (id);
+  
   const newItem = {id, name, description, image, category};
   this.handleSubmit (newItem, dispatch);
+
 }
 
 
@@ -97,7 +99,7 @@ onClickSubmit = (id, name, description, image, category, dispatch) => {
                          this, id, name, description, image, category, dispatch
                        )}
                     />
-                    <i className="fas fa-times" onClick = {this.props.toggleForm} />
+                    <i className="fas fa-times" onClick = {this.props.toggleForm.bind(this, id)} />
                   </div>
                 </form>
               );

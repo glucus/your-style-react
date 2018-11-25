@@ -43,10 +43,15 @@ const reducer = (state, action) => {
 
     case 'SUBMIT_ITEM': {
 
+      const { clothes } = state;
+
       const newItem = action.payload;
+      // console.log ('newItem: ', newItem);
 
       const found = alreadyExists(clothes, newItem.id);
-      const result = found[0] || null ;
+      // console.log ('found: ', found);
+
+      const result = found[0] || null;
 
       if (result) {
 
@@ -70,6 +75,7 @@ const reducer = (state, action) => {
           clothes: updatedClothes
         }  
       } 
+
     }
 
     default: 
