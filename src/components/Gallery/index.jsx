@@ -21,12 +21,9 @@ class Gallery extends React.Component {
     } return arr;
   };
 
-  toggleForm = () => {
-    this.setState ({ showNewCard: !this.state.showNewCard })
-  }
 
-  toggleCardForm = (id, e) => {
-    // console.log (`toggling form for card with id ${id}`);
+  toggleForm = (id, e) => {
+    console.log (`toggling form for card with id ${id}`);
     this.setState ({
       formHidden: !this.state.formHidden,
       showNewCard: !this.state.showNewCard
@@ -45,7 +42,7 @@ class Gallery extends React.Component {
 
           // const newCard = {};
           const newCard = {
-            id: null,
+            id: clothes.length,
             name: 'new item',
             image: 'https://via.placeholder.com/210x250.png?text=your-style.com',
             description: 'new item',
@@ -80,7 +77,7 @@ class Gallery extends React.Component {
               </div>
               <div className="gallery">
                   {showNewCard && <div className="card">
-                      <Form card={newCard} toggleForm={this.toggleCardForm} />
+                      <Form card={newCard} toggleForm={this.toggleForm} />
                   </div>} 
                   <Cards cards={filteredClothes} />
               </div>
