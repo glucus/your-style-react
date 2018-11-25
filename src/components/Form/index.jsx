@@ -27,8 +27,6 @@ class Form extends React.Component {
     const field = e.target.name;
     const value = e.target.value;
 
-    console.log ('selected', field, value);
-
     this.setState ({
       [field]: value
     })
@@ -95,8 +93,11 @@ onClickSubmit = (id, name, description, image, category, dispatch) => {
                     </div>
                   <div className="icons-bottom">
                     <i className="fas fa-check"
-                       onClick = {this.onClickSubmit.bind (this, id, name, description, image, category, dispatch)}
+                       onClick = {this.onClickSubmit.bind (
+                         this, id, name, description, image, category, dispatch
+                       )}
                     />
+                    <i className="fas fa-times" onClick = {this.props.toggleForm} />
                   </div>
                 </form>
               );
