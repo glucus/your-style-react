@@ -42,22 +42,18 @@ const reducer = (state, action) => {
 
 
     case 'SUBMIT_ITEM': {
+
       const newItem = action.payload;
-      console.log ('newItem', newItem);
 
       const found = alreadyExists(clothes, newItem.id);
-      console.log ('found', found);
-
       const result = found[0] || null ;
 
       if (result) {
-        console.log (`replacing existing item`, result, 'by', newItem);
 
         const restClothes = clothes.filter (item => item.id !== newItem.id);
         const updatedClothes = [newItem, ...restClothes];
 
-        // console.log ('rest clothes', restClothes);
-        // console.log (`updated clothes: `, updatedClothes);
+        console.log (`updated clothes with id ${newItem.id}`, updatedClothes);
 
         return {
           ...state,
@@ -65,14 +61,15 @@ const reducer = (state, action) => {
         }   
       }
 
-        const updatedClothes = [{...newItem, id: clothes.length}, ...state.clothes];
-        console.log (`new item with id ${clothes.length} added`, updatedClothes);
+      else {
+        const updatedClothes = [newItem, ...state.clothes];
+        console.log (`added new item with id ${newItem.id}`, updatedClothes);
 
         return {
           ...state,
           clothes: updatedClothes
         }  
-      
+      } 
     }
 
     default: 

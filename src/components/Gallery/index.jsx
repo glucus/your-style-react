@@ -41,8 +41,11 @@ class Gallery extends React.Component {
           const filteredClothes = this.filterClothes(clothes, categoryName);
 
           // const newCard = {};
+
+          const newId = clothes.length;
+
           const newCard = {
-            id: clothes.length,
+            id: newId,
             name: 'new item',
             image: 'https://via.placeholder.com/210x250.png?text=your-style.com',
             description: 'new item',
@@ -60,14 +63,14 @@ class Gallery extends React.Component {
                   <h2>{categoryDescription}</h2>
                   {!this.state.showNewCard ? 
                   <button className="addNewButton"
-                          onClick={this.toggleForm}
+                          onClick={this.toggleForm.bind (this, newId)}
                   >
                     Add new item
                     <i className="fas fa-plus" />
                   </button>
                   :
                   <button className="addNewButtonCancel"
-                    onClick = {this.toggleForm}>
+                    onClick = {this.toggleForm.bind (this, newId)}>
                     Cancel
                     <i className="fas fa-times" />
                   </button>
