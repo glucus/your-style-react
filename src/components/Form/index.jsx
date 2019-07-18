@@ -34,7 +34,7 @@ class Form extends React.Component {
 
 
   handleSubmit = (newItem, dispatch) => {
-       console.log ('submitting item with id', newItem.id);
+       // console.log ('submitting item with id', newItem.id);
 
         dispatch ({
         type: 'SUBMIT_ITEM',

@@ -22,7 +22,7 @@ const reducer = (state, action) => {
       const answer = window.confirm (`Are you sure you want to delete ${action.payload.name}?`);
       if (answer) {
 
-        console.log (`deleting ${action.payload.name}`);
+        // console.log (`deleting ${action.payload.name}`);
         return {
            ...state,
             clothes: clothesAfterDeletion
@@ -58,7 +58,7 @@ const reducer = (state, action) => {
         const restClothes = clothes.filter (item => item.id !== newItem.id);
         const updatedClothes = [newItem, ...restClothes];
 
-        console.log (`updated clothes with id ${newItem.id}`, updatedClothes);
+        // console.log (`updated clothes with id ${newItem.id}`, updatedClothes);
 
         return {
           ...state,
@@ -68,7 +68,7 @@ const reducer = (state, action) => {
 
       else {
         const updatedClothes = [newItem, ...state.clothes];
-        console.log (`added new item with id ${newItem.id}`, updatedClothes);
+        // console.log (`added new item with id ${newItem.id}`, updatedClothes);
 
         return {
           ...state,
